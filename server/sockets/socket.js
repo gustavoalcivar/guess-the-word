@@ -21,7 +21,8 @@ io.on('connection', (client) => {
         actual: ticketControl.getUltimoTicket(),
         ultimos4: ticketControl.getUltimos4(),
         acertadas: ticketControl.getAcertadas(),
-        falladas: ticketControl.getFalladas()
+        falladas: ticketControl.getFalladas(),
+        participante: null
     });
 
     client.on('atenderTicket', (data, callback) => {
@@ -43,7 +44,8 @@ io.on('connection', (client) => {
         client.broadcast.emit('ultimos4', {
             ultimos4: ticketControl.getUltimos4(),
             acertadas: ticketControl.getAcertadas(),
-            falladas: ticketControl.getFalladas()
+            falladas: ticketControl.getFalladas(),
+            participante: `Está jugando ${data.escritorio}`
         });
 
 
