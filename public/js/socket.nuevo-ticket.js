@@ -24,7 +24,7 @@ socket.on('estadoActual', function(resp) {
 $('button').on('click', function() {
 
     socket.emit('siguienteTicket', null, function(siguienteTicket) {
-        label.text('Palabras generadas')
+        //label.text('Palabras generadas')
         //label.text(siguienteTicket);
 
     });

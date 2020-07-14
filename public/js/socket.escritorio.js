@@ -26,7 +26,7 @@ socket.emit("atenderTicket", { escritorio: escritorio, tipo: "" }, function (
 ) {
   if (resp === "No hay más palabras") {
     label.text(resp);
-    alert(resp);
+    //alert(resp);
     btnAcertada.hide();
     btnPaso.hide();
     return;
@@ -41,7 +41,7 @@ $("#btnAcertada").on("click", function () {
     function (resp) {
       if (resp === "No hay más palabras") {
         label.text(resp);
-        alert(resp);
+        //alert(resp);
         btnAcertada.hide();
         btnPaso.hide();
         return;
@@ -59,7 +59,7 @@ $("#btnPaso").on("click", function () {
     function (resp) {
       if (resp === "No hay más palabras") {
         label.text(resp);
-        alert(resp);
+        //alert(resp);
         btnAcertada.hide();
         btnPaso.hide();
         return;
@@ -71,12 +71,17 @@ $("#btnPaso").on("click", function () {
 });
 
 socket.on("finTiempo", function (data) {
-  alert("SE ACABÓ EL TIEMPO");
+  //alert("SE ACABÓ EL TIEMPO");
   btnAcertada.hide();
   btnPaso.hide();
   lblAcertadas.text(`Aciertos: ${data.acertadas}`);
   lblFalladas.text(`Fallos: ${data.falladas}`);
   $("#tdAcertadas").show();
   $("#tdFalladas").show();
-  socket.emit("reiniciarConteo", null);
+  
+  socket.emit('siguienteTicket', null, function(siguienteTicket) {
+    //label.text('Palabras generadas')
+    //label.text(siguienteTicket);
+
+  });
 });
