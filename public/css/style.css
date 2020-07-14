@@ -40,3 +40,7 @@ table {
 #lblNuevoTicket {
     font-size: 70px;
 }
+
+.no-visible {
+    display: none;
+}

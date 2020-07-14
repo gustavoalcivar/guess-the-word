@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Programa de Charadas</title>
+    <title>Charadas online</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -15,6 +15,7 @@
     <h1>Participante</h1>
 
     <table>
+        <tr>
             <td>
                 <button id="btnAcertada" class="btn btn-primary verde">
                     Acertada
@@ -26,11 +27,17 @@
                 </button>
             </td>
         </tr>
+        <tr>
+            <td class="verde" id="tdAcertadas">
+                <span id="lblAcertadas" class="ticket-secundario"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="rojo" id="tdFalladas">
+                <span id="lblFalladas" class="ticket-secundario"></span>
+            </td>
+        </tr>
     </table>
-    
-    <button class="btn btn-primary">
-        Siguiente palabra
-    </button>
 
 
 

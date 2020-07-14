@@ -5,6 +5,7 @@ var lblTicket1 = $("#lblTicket1");
 var lblTicket2 = $("#lblTicket2");
 var lblTicket3 = $("#lblTicket3");
 /*var lblTicket4 = $('#lblTicket4');*/
+var lblTiempo = $("#lblTiempo");
 
 var lblEscritorio1 = $("#lblEscritorio1");
 var lblEscritorio2 = $("#lblEscritorio2");
@@ -37,3 +38,31 @@ function actualizaHTML(ultimos4, acertadas, falladas) {
   lblTicket2.text(acertadas);
   lblTicket3.text(falladas);
 }
+
+socket.on("iniciarTiempo", function (data) {
+  var deadline = new Date();
+  deadline.setSeconds(deadline.getSeconds() + 10);
+  var x = setInterval(function () {
+    var now = new Date().getTime();
+    var t = deadline - now;
+    //var days = Math.floor(t / (1000 * 60 * 60 * 24));
+    //var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+    var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((t % (1000 * 60)) / 1000);
+    document.getElementById("lblTiempo").innerHTML = minutes + ":" + seconds;
+    if (t < 1) {
+      clearInterval(x);
+      document.getElementById("lblTiempo").innerHTML = "TIEMPO";
+      console.log(document.getElementById("lblTicket2").innerHTML);
+      socket.emit("finTiempo", {
+          acertadas: document.getElementById("lblTicket2").innerHTML,
+          falladas: document.getElementById("lblTicket3").innerHTML
+        });
+        socket.emit("reiniciarConteo", null);
+    }
+  }, 1000);
+});
+
+socket.on("siguienteTiket", function(data) {
+    actualizaHTML([], 0, 0);
+})

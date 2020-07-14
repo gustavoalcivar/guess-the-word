@@ -1,6 +1,9 @@
 // Comando para establecer la conexión
 var socket = io();
 
+$("#tdAcertadas").hide();
+$("#tdFalladas").hide();
+
 var searchParams = new URLSearchParams(window.location.search);
 
 if (!searchParams.has("escritorio")) {
@@ -12,6 +15,8 @@ var escritorio = searchParams.get("escritorio");
 var label = $("small");
 var btnAcertada = $("#btnAcertada");
 var btnPaso = $("#btnPaso");
+var lblAcertadas = $("#lblAcertadas");
+var lblFalladas = $("#lblFalladas");
 
 //console.log(escritorio);
 $("h1").text("Participante: " + escritorio);
@@ -26,7 +31,6 @@ socket.emit("atenderTicket", { escritorio: escritorio, tipo: "" }, function (
     btnPaso.hide();
     return;
   }
-
   //label.text(resp.numero);
 });
 
@@ -64,4 +68,15 @@ $("#btnPaso").on("click", function () {
       //label.text(resp.numero);
     }
   );
+});
+
+socket.on("finTiempo", function (data) {
+  alert("SE ACABÓ EL TIEMPO");
+  btnAcertada.hide();
+  btnPaso.hide();
+  lblAcertadas.text(`Aciertos: ${data.acertadas}`);
+  lblFalladas.text(`Fallos: ${data.falladas}`);
+  $("#tdAcertadas").show();
+  $("#tdFalladas").show();
+  socket.emit("reiniciarConteo", null);
 });

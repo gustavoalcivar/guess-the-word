@@ -49,7 +49,16 @@ io.on('connection', (client) => {
 
     });
 
+    client.on("iniciarTiempo", (data, callback) => {
+        client.broadcast.emit("iniciarTiempo", null);
+    })
 
+    client.on("finTiempo", (data, callback) => {
+        client.broadcast.emit("finTiempo", data);
+    })
 
+    client.on("reiniciarConteo", (data, callback) => {
+        ticketControl.siguiente();
+    })
 
 });
