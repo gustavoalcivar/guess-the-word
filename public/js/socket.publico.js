@@ -41,7 +41,7 @@ function actualizaHTML(ultimos4, acertadas, falladas) {
 
 socket.on("iniciarTiempo", function (data) {
   var deadline = new Date();
-  deadline.setSeconds(deadline.getSeconds() + 10);
+  deadline.setSeconds(deadline.getSeconds() + 121);
   var x = setInterval(function () {
     var now = new Date().getTime();
     var t = deadline - now;
