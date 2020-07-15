@@ -35,7 +35,7 @@ class TicketControl {
   }
 
   getWord() {
-    return this.words[Math.floor(Math.random() * this.words.length)];
+    return this.words[Math.floor(Math.random() * Math.random() * this.words.length)];
     /*const length = 10;
     let result = "";
     let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

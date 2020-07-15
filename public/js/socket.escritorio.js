@@ -39,6 +39,8 @@ $("#btnAcertada").on("click", function () {
     "atenderTicket",
     { escritorio: escritorio, tipo: "acertada" },
     function (resp) {
+      var audio = new Audio('/audio/good.mp3');
+      audio.play();
       if (resp === "No hay más palabras") {
         label.text(resp);
         //alert(resp);
@@ -57,6 +59,8 @@ $("#btnPaso").on("click", function () {
     "atenderTicket",
     { escritorio: escritorio, tipo: "fallada" },
     function (resp) {
+      var audio = new Audio('/audio/bad.mp3');
+      audio.play();
       if (resp === "No hay más palabras") {
         label.text(resp);
         //alert(resp);
