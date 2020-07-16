@@ -64,7 +64,3 @@ socket.on("iniciarTiempo", function (data) {
     }
   }, 1000);
 });
-
-socket.on("siguienteTiket", function(data) {
-    actualizaHTML([], 0, 0);
-})

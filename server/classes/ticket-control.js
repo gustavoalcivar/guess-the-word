@@ -35,7 +35,9 @@ class TicketControl {
   }
 
   getWord() {
-    return this.words[Math.floor(Math.random() * Math.random() * this.words.length)];
+    return this.words[
+      Math.floor(Math.random() * Math.random() * this.words.length)
+    ];
     /*const length = 10;
     let result = "";
     let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -47,22 +49,29 @@ class TicketControl {
   }
 
   siguiente() {
-    this.reiniciarConteo();
+    if (this.tickets.length <= 20) {
+      this.reiniciarConteo();
 
-    let data = fs.readFileSync(
-      process.cwd() + "/server/data/words.json",
-      "utf8"
-    );
+      let data = fs.readFileSync(
+        process.cwd() + "/server/data/words.json",
+        "utf8"
+      );
 
-    let words2 = JSON.parse(data);
-    this.words = words2.words;
+      let words2 = JSON.parse(data);
+      this.words = words2.words;
 
-    for (let i = 0; i < this.wordsCount; i++) {
-      this.ultimo = this.getWord();
-      removeItemFromArr(this.words, this.ultimo);
-      let ticket = new Ticket(this.ultimo, null);
-      this.tickets.push(ticket);
+      for (let i = 0; i < this.wordsCount; i++) {
+        this.ultimo = this.getWord();
+        removeItemFromArr(this.words, this.ultimo);
+        let ticket = new Ticket(this.ultimo, null);
+        this.tickets.push(ticket);
 
+        this.grabarArchivo();
+      }
+    } else {
+      this.ultimos4 = [];
+      this.acertadas = 0;
+      this.falladas = 0;
       this.grabarArchivo();
     }
 
