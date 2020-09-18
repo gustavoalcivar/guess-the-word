@@ -36,7 +36,7 @@ class TicketControl {
 
   getWord() {
     return this.words[
-      Math.floor(Math.random() * Math.random() * this.words.length)
+      Math.floor(Math.random(Math.random()) * this.words.length)
     ];
     /*const length = 10;
     let result = "";
